@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Countdown to BER Essential Insights Launch</title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background-color: #fff;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      text-align: center;
+      padding: 40px;
+      border: 1px solid #ddd;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      max-width: 400px;
+      width: 90%;
+    }
+    h1 {
+      font-size: 1.8em;
+      color: #0055A4;  /* BER blue from website header */
+      margin-bottom: 20px;
+    }
+    #countdown {
+      font-size: 2.5em;
+      font-weight: bold;
+      color: #0055A4;
+    }
+    #footer {
+      margin-top: 20px;
+      font-size: 0.9em;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>BER Essential Insights Launch</h1>
+    <div id="countdown">Loading...</div>
+    <div id="footer">Launch at 09:00 SAST, 1 August 2025</div>
+  </div>
+
+  <script>
+    // Target: 1 August 2025 at 09:00 SAST (UTC+2)
+    const launchTime = new Date('2025-08-01T07:00:00Z');
+
+    function updateCountdown() {
+      const now = new Date();
+      const diff = launchTime - now;
+
+      if (diff <= 0) {
+        document.getElementById('countdown').textContent = "🚀 Launched!";
+        clearInterval(timer);
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      let parts = [];
+      if (days > 0) parts.push(`${days}d`);
+      parts.push(`${hours}h`, `${minutes}m`, `${seconds}s`);
+      document.getElementById('countdown').textContent = parts.join(' ');
+    }
+
+    updateCountdown();
+    const timer = setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
